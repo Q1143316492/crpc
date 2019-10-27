@@ -1,4 +1,7 @@
 #include "stringTools.h"
+#include "conf.h"
+
+extern CConfigKV g_conf;
 
 string StringTools::IntToString(int val)
 {

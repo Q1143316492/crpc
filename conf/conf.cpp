@@ -33,7 +33,7 @@ void CConfigKV::load(string strFilePath)
 
 string CConfigKV::showConf()
 {
-    stringstream ss;
+    stringstream ss("");
     for (unordered_map<string, string>::iterator it = confkv.begin(); it != confkv.end(); it++ ) {
         ss << it->first << " " << it->second << "\n";
     }

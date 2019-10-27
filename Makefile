@@ -1,7 +1,6 @@
 include config.mk
 
-all: 	
-	@echo "[$(BUILD_DIR)]"
+all:
 	@for dir in $(BUILD_DIR); \
 	do \
 		make -C $$dir; \
