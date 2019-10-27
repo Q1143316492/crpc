@@ -3,8 +3,12 @@
 
 using namespace std;
 
-int main()
+CConfigKV g_conf;
+
+int main(int argc, char **argv)
 {
-    test();
+    g_conf.load();
+
+
     return 0;
 }

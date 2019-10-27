@@ -3,3 +3,5 @@ export INCLUDE_PATH = $(BUILD_ROOT)/_include
 export DEBUG = true
 
 BUILD_DIR = $(BUILD_ROOT)/app/ \
+			$(BUILD_ROOT)/tools/ \
+			$(BUILD_ROOT)/conf/ \

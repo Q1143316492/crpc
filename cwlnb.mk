@@ -1,15 +1,14 @@
 ifeq ($(DEBUG),true)
-    #-g是生成调试信息。GNU调试器可以利用该信息
-    CC = g++ -g
+    CC = g++ -g -std=c++11
     VERSION = debug
 else
-    CC = g++
+    CC = g++ -std=c++11
     VERSION = release
 endif
 
-SRCS = $(wildcard *.cxx)
-OBJS = $(SRCS:.cxx=.o)
-DEPS = $(SRCS:.cxx=.d)
+SRCS = $(wildcard *.cpp)
+OBJS = $(SRCS:.cpp=.o)
+DEPS = $(SRCS:.cpp=.d)
 
 BIN := $(addprefix $(BUILD_ROOT)/,$(BIN))
 
@@ -35,9 +34,9 @@ $(BIN):$(LINK_OBJ)
 	@echo "------------------------build $(VERSION) mode--------------------------------!!!"
 	$(CC) -o $@ $^
 	
-$(LINK_OBJ_DIR)/%.o:%.cxx
-	$(CC) -I$(INCLUDE_PATH) -o $@ -c $(filter %.cxx,$^)
+$(LINK_OBJ_DIR)/%.o:%.cpp
+	$(CC) -I$(INCLUDE_PATH) -o $@ -c $(filter %.cpp,$^)
 
-$(DEP_DIR)/%.d:%.cxx
+$(DEP_DIR)/%.d:%.cpp
 	echo -n $(LINK_OBJ_DIR)/ > $@
 	gcc -I$(INCLUDE_PATH) -MM $^ >> $@
