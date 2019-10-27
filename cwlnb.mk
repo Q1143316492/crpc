@@ -5,13 +5,11 @@ else
     CC = g++ -std=c++11
     VERSION = release
 endif
-
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)
 
 BIN := $(addprefix $(BUILD_ROOT)/,$(BIN))
-
 LINK_OBJ_DIR = $(BUILD_ROOT)/app/link_obj
 DEP_DIR = $(BUILD_ROOT)/app/dep
 

@@ -4,4 +4,5 @@ export DEBUG = true
 
 BUILD_DIR = $(BUILD_ROOT)/tools/ \
 			$(BUILD_ROOT)/conf/ \
+			$(BUILD_ROOT)/log/ \
 			$(BUILD_ROOT)/app/ \
