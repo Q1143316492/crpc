@@ -5,8 +5,8 @@
 
 using namespace std;
 
-CConfigKV g_conf;
-CLog      g_log;
+CConfigKV *g_conf = nullptr;
+CLog      *g_log  = nullptr;
 
 void test() {
 
@@ -14,10 +14,22 @@ void test() {
 
 int main(int argc, char **argv)
 {
-    g_conf.init();
-    
-    DEBUG_LOG("test log version %d", 1);
-    
+    do {
+        g_conf = new CConfigKV();
+        g_conf->init();
+        g_log  = new CLog();
+
+        if (g_conf == nullptr || g_log == nullptr) {
+            // 日志模块和配置模块都失败就没救了...
+            break;
+        }
+        INFO_LOG("Success to init log and config");
+
+        
+
+        
+
+    } while(false);
 
     return 0;
 }
