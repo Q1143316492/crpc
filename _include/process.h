@@ -13,9 +13,4 @@ typedef struct ProcessMessage {
     u_int procType;
 } ProcessMsg;
 
-void init_process()
-{
-    
-}
-
 #endif

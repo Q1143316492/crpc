@@ -11,11 +11,11 @@ using std::stringstream;
 #define DEFAULT_LOG_PATH "log/"
 #define MAX_LOG_MSG_SIZE 128
 
-#define DEBUG_LOG(args...)   g_log->printLog(STR_NO_BUG_LOG_DEBUG    , args)
-#define INFO_LOG(args...)    g_log->printLog(STR_NO_BUG_LOG_INFO     , args)
-#define NOTICE_LOG(args...)  g_log->printLog(STR_NO_BUG_LOG_NOTICE   , args)
-#define WARN_LOG(args...)    g_log->printLog(STR_NO_BUG_LOG_WARN     , args)
-#define ERR_LOG(args...)     g_log->printLog(STR_NO_BUG_LOG_ERR      , args)
+#define DEBUG_LOG(args...)   g_log->printLog(__FILE__, __FUNCTION__, __LINE__, STR_NO_BUG_LOG_DEBUG    , args)
+#define INFO_LOG(args...)    g_log->printLog(__FILE__, __FUNCTION__, __LINE__, STR_NO_BUG_LOG_INFO     , args)
+#define NOTICE_LOG(args...)  g_log->printLog(__FILE__, __FUNCTION__, __LINE__, STR_NO_BUG_LOG_NOTICE   , args)
+#define WARN_LOG(args...)    g_log->printLog(__FILE__, __FUNCTION__, __LINE__, STR_NO_BUG_LOG_WARN     , args)
+#define ERR_LOG(args...)     g_log->printLog(__FILE__, __FUNCTION__, __LINE__, STR_NO_BUG_LOG_ERR      , args)
 
 typedef stringstream LogFormatterStr;
 
@@ -24,9 +24,9 @@ typedef stringstream LogFormatterStr;
 */
 class CLog {
 public:
-    void printLog(const char* level, const char* fmt, ...);
+    void printLog(const char*file, const char* func, int line, const char* level, const char* fmt, ...);
 
-    void writeLogFile(const char* level, const char* buf);
+    void writeLogFile(const char*file, const char* func, int line, const char* level, const char* buf);
 private:
     char buf[MAX_LOG_MSG_SIZE];
 };

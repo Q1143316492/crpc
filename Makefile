@@ -7,4 +7,4 @@ all:
 	done
 
 clean:
-	-rm -rf core/link_obj core/dep crpc
+	-rm -rf app/link_obj app/dep crpc
