@@ -11,6 +11,8 @@ using std::setfill;
 
 tm getDateTime();
 
+string serializeDate(char split = '/');
+
 string serializeDateTime();
 
 #endif
