@@ -1,31 +1,12 @@
 #include "clog.h"
 
-void CLog::DEBUG_LOG()
+
+void CLog::printLog(const char* level, const char* fmt, ...)
 {
-
-}
-
-void CLog::INFO_LOG()
-{
-
-}
-
-void CLog::NOTICE_LOG()
-{
-
-}
-
-void CLog::WARN_LOG()
-{
-
-}
-
-void CLog::ERR_LOG()
-{
-
-}
-
-void CLog::PRINT_LOG(string level)
-{
-    
+    va_list ap;
+    va_start(ap, fmt);
+    char buf[512] = {};
+    vsnprintf(buf, sizeof(buf), fmt, ap);
+    va_end(ap);
+    std::cout << buf << std::endl;
 }

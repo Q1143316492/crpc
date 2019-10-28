@@ -1,6 +1,11 @@
 #include "conf.h"
 #include "stringTools.h"
 
+void CConfigKV::init()
+{
+    this->load();
+}
+
 void CConfigKV::load(string strFilePath)
 {
     this->confFileName = strFilePath;

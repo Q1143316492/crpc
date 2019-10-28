@@ -4,7 +4,10 @@
 #include <bits/stdc++.h>
 #include <ctime>
 
-using namespace std;
+using std::string;
+using std::stringstream;
+using std::setw;
+using std::setfill;
 
 tm getDateTime();
 

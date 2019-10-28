@@ -2,7 +2,13 @@
 #define _STRING_TOOLS_H_
 
 #include <bits/stdc++.h>
-using namespace std;
+
+using std::string;
+using std::stringstream;
+using std::setw;
+using std::setfill;
+using std::vector;
+using std::ifstream;
 
 class StringTools {
 public:

@@ -1,8 +1,8 @@
 ifeq ($(DEBUG),true)
-    CC = g++ -g -std=c++11
+    CC = g++ -g -std=c++14
     VERSION = debug
 else
-    CC = g++ -std=c++11
+    CC = g++ -std=c++14
     VERSION = release
 endif
 SRCS = $(wildcard *.cpp)
