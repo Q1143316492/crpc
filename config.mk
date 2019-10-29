@@ -6,4 +6,5 @@ BUILD_DIR = $(BUILD_ROOT)/tools/ \
 			$(BUILD_ROOT)/log/ \
 			$(BUILD_ROOT)/conf/ \
 			$(BUILD_ROOT)/process/ \
+			$(BUILD_ROOT)/net/ \
 			$(BUILD_ROOT)/app/ \

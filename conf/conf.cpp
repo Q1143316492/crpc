@@ -30,7 +30,13 @@ void CConfigKV::load(string strFilePath)
         }
         StringTools::trim(vecKv[0]);
         StringTools::trim(vecKv[1]);
-        if (vecKv[0].size() && vecKv[1].size()) {
+        if (!vecKv[0].size() || !vecKv[1].size()) {
+            continue;
+        }
+        if (confkv.count(vecKv[0])) {
+            confkv[ vecKv[0] ] += ";";
+            confkv[ vecKv[0] ] += vecKv[1];
+        } else {
             confkv[ vecKv[0] ] = vecKv[1];
         }
     }
@@ -43,4 +49,12 @@ string CConfigKV::showConf()
         ss << it->first << " " << it->second << "\n";
     }
     return ss.str();
+}
+
+string CConfigKV::get_conf(string key)
+{
+    if (this->confkv.count(key)) {
+        return this->confkv[key];
+    }
+    return "";
 }

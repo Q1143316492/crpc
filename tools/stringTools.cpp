@@ -36,7 +36,7 @@ vector<string> StringTools::splitString(const string &str, char splitChar)
 {
     vector<string> vecSplitStr;
     stringstream ss;
-    for(size_t i = 0; i < str.size(); i++ ) {
+    for (size_t i = 0; i < str.size(); i++ ) {
         if (str[i] == splitChar) {
             vecSplitStr.push_back(ss.str());
             ss.str("");
@@ -44,8 +44,10 @@ vector<string> StringTools::splitString(const string &str, char splitChar)
             ss << str[i];
         }
     }
-    vecSplitStr.push_back(ss.str());
-    ss.clear();
+    if (ss.str().size() != 0) {
+        vecSplitStr.push_back(ss.str());
+        ss.clear();
+    }
     return vecSplitStr;
 }
 

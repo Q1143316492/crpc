@@ -13,6 +13,7 @@ class CConfigKV {
 public:
     void load(string filepath = DEFAULT_CONFKV_PATH);
     void init();
+    string get_conf(string key);
     string showConf();
 private:
     unordered_map<string, string> confkv;

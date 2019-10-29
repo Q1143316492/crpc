@@ -4,6 +4,7 @@
 #include "timeTools.h"
 #include "cserver.h"
 #include "unistd.h"
+#include "csocket.h"
 
 using namespace std;
 
@@ -50,7 +51,7 @@ static void moveGlobalEnviron()
     }
 }
 
-void setproctitle(char *const *argv, const char *title)
+static void setproctitle(char *const *argv, const char *title)
 {
     size_t titleLen = strlen(title);
     size_t maxTitleLen = g_arg_len + g_env_len;
@@ -67,6 +68,7 @@ void setproctitle(char *const *argv, const char *title)
 int main(int argc, char *const *argv)
 {
     do {
+        // 初始化日志和配置文件
         g_conf = new CConfigKV();
         g_conf->init();
         g_log  = new CLog();
@@ -76,18 +78,20 @@ int main(int argc, char *const *argv)
             break;
         }
         INFO_LOG("Success init log and config");
-        DEBUG_LOG("before init_deamon() pid = %d ppid = %d", getpid(), getppid());
-        
-        int ret_deamon = init_deamon();
-        if (ret_deamon == 1) {
-            DEBUG_LOG("father process exit()");
-            break;
-        } else if(ret_deamon == -1) {
-            ERR_LOG("init_deamon() fail exit()");
-            break;
-        }
 
-        DEBUG_LOG("after init_deamon() pid = %d ppid = %d", getpid(), getppid());
+        // 使当前进程成为守护进程
+        // DEBUG_LOG("before init_deamon() pid = %d ppid = %d", getpid(), getppid());
+        // int ret_deamon = init_deamon();
+        // if (ret_deamon == 1) {
+        //     DEBUG_LOG("father process exit()");
+        //     break;
+        // } else if(ret_deamon == -1) {
+        //     ERR_LOG("init_deamon() fail exit()");
+        //     break;
+        // }
+        // DEBUG_LOG("after init_deamon() pid = %d ppid = %d", getpid(), getppid());
+        
+        // 初始化服务
         g_cserver = new CServer();
         if (g_cserver == nullptr) {
             ERR_LOG("init g_cserver fail");
@@ -95,15 +99,20 @@ int main(int argc, char *const *argv)
         }
         INFO_LOG("Success init server pid = %d", g_cserver->cserver_getppid());
         
+        // 迁移环境变量和命令行参数
         g_os_argc = argc;
         g_os_argv = (char**) argv;
         moveArgv();
         moveGlobalEnviron();
         setproctitle(argv, SERVER_MASTER);
 
+        // 简单socket 测试
+        CSocket::simpleSocketLoop();
+
         while (true);
 
     } while(false);
 
+    INFO_LOG("sever success to finish");
     return 0;
 }
