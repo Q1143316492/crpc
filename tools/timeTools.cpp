@@ -24,7 +24,7 @@ string serializeDate(char split)
 {
     tm ltm = getDateTime();
     stringstream ss;
-    ss << (ltm.tm_year + 1900) << split << ltm.tm_mon << split << ltm.tm_mday;
+    ss << (ltm.tm_year + 1900) << split << (ltm.tm_mon + 1) << split << ltm.tm_mday;
     return ss.str();
 }
 
@@ -32,7 +32,7 @@ string serializeDateTime()
 {
     tm ltm = getDateTime();
     stringstream ss;
-    ss << (ltm.tm_year + 1900) << "/" << ltm.tm_mon << "/" << ltm.tm_mday << "-";
+    ss << (ltm.tm_year + 1900) << "/" << (ltm.tm_mon + 1) << "/" << ltm.tm_mday << "-";
     ss << setw(2) << setfill('0') << ltm.tm_hour << ":";
     ss << setw(2) << setfill('0') << ltm.tm_min << ":";
     ss << setw(2) << setfill('0') << ltm.tm_sec;

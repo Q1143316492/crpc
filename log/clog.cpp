@@ -22,7 +22,7 @@ void CLog::writeLogFile(const char*file, const char* func, int line, const char*
     }
     fs << "[" << serializeDateTime() << "]";
     fs << "[" << level << "]";
-    fs << "[" << "file:" << file << " function:" << func << " line:" << line << "]";
+    fs << "[" << "file:" << file << " " << func << "()" << ":" << line << "]";
     fs << "[" << buf << "]" << std::endl;
     fs.close();
 }

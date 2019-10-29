@@ -30,10 +30,9 @@ static void moveArgv()
     for (int i = 0; i < g_os_argc; i++ ) {
         int size = strlen(g_os_argv[i]) + 1;
         strcpy(ptmp, g_os_argv[i]);
-        g_os_argv[i] = ptmp;
         ptmp += size;
-
     }
+    g_os_argv = (char **)new_argv;
 }
 
 static void moveGlobalEnviron()
@@ -51,7 +50,7 @@ static void moveGlobalEnviron()
     }
 }
 
-void setproctitle(char** argv, const char* title)
+void setproctitle(char *const *argv, const char *title)
 {
     size_t titleLen = strlen(title);
     size_t maxTitleLen = g_arg_len + g_env_len;
@@ -77,22 +76,30 @@ int main(int argc, char *const *argv)
             break;
         }
         INFO_LOG("Success init log and config");
+        DEBUG_LOG("before init_deamon() pid = %d ppid = %d", getpid(), getppid());
+        
+        int ret_deamon = init_deamon();
+        if (ret_deamon == 1) {
+            DEBUG_LOG("father process exit()");
+            break;
+        } else if(ret_deamon == -1) {
+            ERR_LOG("init_deamon() fail exit()");
+            break;
+        }
 
+        DEBUG_LOG("after init_deamon() pid = %d ppid = %d", getpid(), getppid());
         g_cserver = new CServer();
         if (g_cserver == nullptr) {
             ERR_LOG("init g_cserver fail");
             break;
         }
         INFO_LOG("Success init server pid = %d", g_cserver->cserver_getppid());
+        
         g_os_argc = argc;
         g_os_argv = (char**) argv;
         moveArgv();
         moveGlobalEnviron();
-        char *name = new char[5];
-        name[0] = 'a';
-        name[1] = '\0';
-        strcpy(argv[0], name);
-        // setproctitle("master");
+        setproctitle(argv, SERVER_MASTER);
 
         while (true);
 
