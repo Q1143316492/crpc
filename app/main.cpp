@@ -5,6 +5,7 @@
 #include "cserver.h"
 #include "unistd.h"
 #include "csocket.h"
+#include "process.h"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ CServer   *g_cserver = nullptr;
 int g_os_argc = 0;
 int g_arg_len = 0;
 char **g_os_argv = nullptr;
+char **g_os_old_argv = nullptr;
 
 int g_env_len = 0;
 char **g_env_mem = nullptr;
@@ -37,7 +39,7 @@ static void moveArgv()
 }
 
 static void moveGlobalEnviron()
-{   
+{
     for (int i = 0; environ[i]; i++ ) {
         g_env_len += strlen(environ[i]) + 1;
     }
@@ -51,18 +53,11 @@ static void moveGlobalEnviron()
     }
 }
 
-static void setproctitle(char *const *argv, const char *title)
+static void serverWorkProcess() 
 {
-    size_t titleLen = strlen(title);
-    size_t maxTitleLen = g_arg_len + g_env_len;
-    if (titleLen + 1 <= maxTitleLen) {
-        char *ptmp = argv[0];
-        strcpy(ptmp, title);
-        ptmp += titleLen;
-        memset(ptmp, 0, maxTitleLen - titleLen);
-    } else {
-        WARN_LOG("set process title fail");
-    }
+    string strWorkNum = g_conf->get_conf("work_proc_num");
+    int worknum = strWorkNum.empty() ? 1 : StringTools::StringToInt(strWorkNum);
+    workProcessLoop();
 }
 
 int main(int argc, char *const *argv)
@@ -79,17 +74,17 @@ int main(int argc, char *const *argv)
         }
         INFO_LOG("Success init log and config");
 
-        // 使当前进程成为守护进程
-        // DEBUG_LOG("before init_deamon() pid = %d ppid = %d", getpid(), getppid());
-        // int ret_deamon = init_deamon();
-        // if (ret_deamon == 1) {
-        //     DEBUG_LOG("father process exit()");
-        //     break;
-        // } else if(ret_deamon == -1) {
-        //     ERR_LOG("init_deamon() fail exit()");
-        //     break;
-        // }
-        // DEBUG_LOG("after init_deamon() pid = %d ppid = %d", getpid(), getppid());
+        // 以守护进程的方式运行
+        DEBUG_LOG("before init_deamon() pid = %d ppid = %d", getpid(), getppid());
+        int ret_deamon = init_deamon();
+        if (ret_deamon == 1) {
+            INFO_LOG("father process exit");
+            break;
+        } else if(ret_deamon == -1) {
+            ERR_LOG("init_deamon() fail exit()");
+            break;
+        }
+        DEBUG_LOG("after init_deamon() pid = %d ppid = %d", getpid(), getppid());
         
         // 初始化服务
         g_cserver = new CServer();
@@ -102,17 +97,21 @@ int main(int argc, char *const *argv)
         // 迁移环境变量和命令行参数
         g_os_argc = argc;
         g_os_argv = (char**) argv;
+        g_os_old_argv = (char**) argv;
         moveArgv();
         moveGlobalEnviron();
         setproctitle(argv, SERVER_MASTER);
 
-        // 简单socket 测试
-        CSocket::simpleSocketLoop();
-
+        // 事件循环
+        serverWorkProcess();
         while (true);
 
     } while(false);
 
     INFO_LOG("sever success to finish");
+
+    delete g_log;
+    delete g_conf;
+    delete g_cserver;
     return 0;
 }

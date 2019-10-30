@@ -25,7 +25,23 @@ public:
     static int socketBind(int port);
     static void simpleSocketLoop();
 private:
-
+    
 };
+
+void doEpoll(vector<int> &fds);
+
+void handle_accept(int epollfd, int listenfd);
+
+void handle_events(int epollfd, struct epoll_event *events, int num, int listenfd, char* buf);
+
+void doRead(int epollfd, int fd, char* buf);
+
+void doWrite(int epollfd, int fd, char* buf);
+
+void addEvent(int epollfd, int fd, int state);
+
+void deleteEvent(int epollfd, int fd, int state);
+
+void modifyEvent(int epollfd, int fd, int state);
 
 #endif

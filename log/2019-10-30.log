@@ -1,0 +1,7 @@
+[2019/10/30-14:02:15][INFO][file:main.cpp main():75][Success init log and config]
+[2019/10/30-14:02:15][DEBUG][file:main.cpp main():78][before init_deamon() pid = 24073 ppid = 22164]
+[2019/10/30-14:02:15][INFO][file:main.cpp main():81][father process exit]
+[2019/10/30-14:02:15][INFO][file:main.cpp main():111][sever success to finish]
+[2019/10/30-14:02:15][INFO][file:process.cpp init_deamon():16][init_deamon() pid = 24074 ppid = 1]
+[2019/10/30-14:02:15][DEBUG][file:main.cpp main():87][after init_deamon() pid = 24074 ppid = 1]
+[2019/10/30-14:02:15][INFO][file:main.cpp main():95][Success init server pid = 24074]

@@ -46,3 +46,38 @@ int init_deamon()
     }
     return 0;
 }
+
+void setproctitle(char *const *argv, const char *title)
+{
+    size_t titleLen = strlen(title);
+    size_t maxTitleLen = g_arg_len + g_env_len;
+    if (titleLen + 1 <= maxTitleLen) {
+        char *ptmp = argv[0];
+        strcpy(ptmp, title);
+        ptmp += titleLen;
+        memset(ptmp, 0, maxTitleLen - titleLen);
+    } else {
+        WARN_LOG("set process title fail");
+    }
+}
+
+void workProcessLoop()
+{
+    setproctitle(g_os_old_argv, SERVER_WORKER);
+    
+    string strPort = g_conf->get_conf("port");
+    vector<string> vecPort = StringTools::splitString(strPort, ';');
+    
+    vector<int> vecListenFds;
+    for (size_t i = 0; i < vecPort.size(); i++ ) {
+        int listenfd = CSocket::socketBind(StringTools::StringToInt(vecPort[i].c_str()));
+        int ret = listen(listenfd, LISTENQ);
+        if (ret == -1) {
+            WARN_LOG("fail to listen port %d", vecPort[i].c_str());
+        } else {
+            vecListenFds.push_back(listenfd);
+        }
+    }
+    doEpoll(vecListenFds);
+
+}
