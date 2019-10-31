@@ -62,6 +62,23 @@ void CSocket::simpleSocketLoop()
     close(listenfd);
 }
 
+// void addIOEvent(int epollfd, int listenfd, int state) {
+    
+//     struct epoll_event ev;
+//     ev.events = state;
+//     ev.data.fd = fd;
+//     epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &ev);
+// }
+
+// int initEpoll(vector<int> fds)
+// {
+//     int epollfd =  epoll_create(EPOLL_INIT_FDSIZE);
+//     for (size_t i = 0; i < fds.size(); i++ ) {
+//         addIOEvent(epollfd, fds[i], EPOLLIN);
+//     }
+//     return epollfd;
+// }
+
 void doEpoll(vector<int> fds)
 {
     int epollfd;

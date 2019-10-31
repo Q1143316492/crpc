@@ -30,6 +30,8 @@ private:
     
 };
 
+void initEpoll(vector<int> fds);
+
 // 测试epoll的系列函数
 
 void doEpoll(vector<int> fds);

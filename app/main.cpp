@@ -63,13 +63,12 @@ static void serverWorkProcess()
 int main(int argc, char *const *argv)
 {
     do {
-        // 初始化日志和配置文件
         g_conf = new CConfigKV();
         g_conf->init();
         g_log  = new CLog();
 
         if (g_conf == nullptr || g_log == nullptr) {
-            // 日志模块和配置模块都失败就没救了...
+            INFO_LOG("g_conf or g_log fail");
             break;
         }
         INFO_LOG("Success init log and config");

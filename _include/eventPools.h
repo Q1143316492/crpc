@@ -18,7 +18,6 @@ struct Connection {
     writeHandler *wfileProc;
 };
 
-
 struct EventPools {
     unordered_map<int, Connection> connectPools;
 };
