@@ -1,0 +1,24 @@
+[2019/10/31-15:06:01][INFO][file:main.cpp main():75][Success init log and config]
+[2019/10/31-15:06:01][INFO][file:main.cpp main():95][Success init server pid = 17563]
+[2019/10/31-15:06:01][DEBUG][file:csocket.cpp socketBind():24][success bind port 8888]
+[2019/10/31-15:06:01][DEBUG][file:process.cpp workProcessLoop():78][prepare listen fd 3]
+[2019/10/31-15:06:15][DEBUG][file:csocket.cpp handleAccept():92][accept a new client: 0.0.0.0 : 0]
+[2019/10/31-15:06:16][DEBUG][file:csocket.cpp doRead():122][read message is: qwe
+ ]
+[2019/10/31-15:06:18][DEBUG][file:csocket.cpp doRead():122][read message is: aaa
+ ]
+[2019/10/31-15:06:20][DEBUG][file:csocket.cpp doRead():122][read message is: asdsd a sdasd
+ ]
+[2019/10/31-15:06:22][DEBUG][file:csocket.cpp doRead():122][read message is: ÿôÿý ]
+[2019/10/31-15:06:22][DEBUG][file:csocket.cpp doRead():122][read message is: ÿû ]
+[2019/10/31-15:06:23][DEBUG][file:csocket.cpp doRead():122][read message is: 
+ ]
+[2019/10/31-15:06:25][DEBUG][file:csocket.cpp doRead():118][client close.]
+[2019/10/31-19:43:44][INFO][file:main.cpp main():75][Success init log and config]
+[2019/10/31-19:43:44][INFO][file:main.cpp main():95][Success init server pid = 23382]
+[2019/10/31-19:43:44][DEBUG][file:csocket.cpp socketBind():24][success bind port 8888]
+[2019/10/31-19:43:44][DEBUG][file:process.cpp workProcessLoop():78][prepare listen fd 3]
+[2019/10/31-19:49:49][INFO][file:main.cpp main():75][Success init log and config]
+[2019/10/31-19:49:49][INFO][file:main.cpp main():95][Success init server pid = 23747]
+[2019/10/31-19:49:49][DEBUG][file:csocket.cpp socketBind():24][success bind port 8888]
+[2019/10/31-19:49:49][DEBUG][file:process.cpp workProcessLoop():78][prepare listen fd 3]

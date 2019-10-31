@@ -12,9 +12,11 @@
 #include "stringTools.h"
 #include "clog.h"
 #include "conf.h"
+#include "cserver.h"
 
 extern CLog      *g_log;
 extern CConfigKV *g_conf;
+extern CServer   *g_cserver;
 
 using std::vector;
 using std::string;
@@ -27,6 +29,8 @@ public:
 private:
     
 };
+
+// 测试epoll的系列函数
 
 void doEpoll(vector<int> fds);
 

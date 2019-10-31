@@ -3,9 +3,15 @@
 CServer::CServer() {
     processMsg.pid = getpid();
     processMsg.ppid = getppid();
+    ptrPools = new EventPools();
     processCount = 1;
     procTitleLen = 0;
     stop = false;
+}
+
+CServer::~CServer()
+{
+    delete ptrPools;
 }
 
 pid_t CServer::cserver_getppid()
@@ -28,7 +34,12 @@ pid_t CServer::cserver_setpid(pid_t ppid)
     this->processMsg.ppid = ppid;
 }
 
-void  CServer::cserver_setproctype(int type)
+void CServer::cserver_setproctype(int type)
 {
     this->processMsg.procType = type;
+}
+
+bool CServer::isStop() 
+{
+    return this->stop;
 }

@@ -79,5 +79,9 @@ void workProcessLoop()
             vecListenFds.push_back(listenfd);
         }
     }
-    doEpoll(vecListenFds);
+    while (!g_cserver->isStop()) {
+        
+        doEpoll(vecListenFds);
+        
+    }
 }
