@@ -75,9 +75,9 @@ void workProcessLoop()
         if (ret == -1) {
             WARN_LOG("fail to listen port %d", vecPort[i].c_str());
         } else {
+            DEBUG_LOG("prepare listen fd %d", listenfd);
             vecListenFds.push_back(listenfd);
         }
     }
     doEpoll(vecListenFds);
-
 }

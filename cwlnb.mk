@@ -29,7 +29,6 @@ ifneq ("$(wildcard $(DEPS))","")
 endif
 
 $(BIN):$(LINK_OBJ)
-	@echo "------------------------build $(VERSION) mode--------------------------------!!!"
 	$(CC) -o $@ $^
 	
 $(LINK_OBJ_DIR)/%.o:%.cpp

@@ -1,7 +1,34 @@
-[2019/10/30-14:02:15][INFO][file:main.cpp main():75][Success init log and config]
-[2019/10/30-14:02:15][DEBUG][file:main.cpp main():78][before init_deamon() pid = 24073 ppid = 22164]
-[2019/10/30-14:02:15][INFO][file:main.cpp main():81][father process exit]
-[2019/10/30-14:02:15][INFO][file:main.cpp main():111][sever success to finish]
-[2019/10/30-14:02:15][INFO][file:process.cpp init_deamon():16][init_deamon() pid = 24074 ppid = 1]
-[2019/10/30-14:02:15][DEBUG][file:main.cpp main():87][after init_deamon() pid = 24074 ppid = 1]
-[2019/10/30-14:02:15][INFO][file:main.cpp main():95][Success init server pid = 24074]
+[2019/10/30-21:26:09][INFO][file:main.cpp main():75][Success init log and config]
+[2019/10/30-21:26:09][INFO][file:main.cpp main():95][Success init server pid = 2270]
+[2019/10/30-21:26:09][DEBUG][file:csocket.cpp socketBind():24][success bind port 8888]
+[2019/10/30-21:26:58][INFO][file:main.cpp main():75][Success init log and config]
+[2019/10/30-21:26:58][INFO][file:main.cpp main():95][Success init server pid = 2299]
+[2019/10/30-21:26:58][DEBUG][file:csocket.cpp socketBind():24][success bind port 8888]
+[2019/10/30-22:47:18][INFO][file:main.cpp main():75][Success init log and config]
+[2019/10/30-22:47:18][INFO][file:main.cpp main():95][Success init server pid = 3612]
+[2019/10/30-22:47:18][DEBUG][file:csocket.cpp socketBind():24][success bind port 8888]
+[2019/10/30-22:47:18][DEBUG][file:process.cpp workProcessLoop():78][prepare listen fd 3]
+[2019/10/30-22:52:05][INFO][file:main.cpp main():75][Success init log and config]
+[2019/10/30-22:52:05][INFO][file:main.cpp main():95][Success init server pid = 3860]
+[2019/10/30-22:52:05][DEBUG][file:csocket.cpp socketBind():24][success bind port 8888]
+[2019/10/30-22:52:05][DEBUG][file:process.cpp workProcessLoop():78][prepare listen fd 3]
+[2019/10/30-22:52:08][DEBUG][file:csocket.cpp handleAccept():92][accept a new client: 0.0.0.0 : 0
+]
+[2019/10/30-22:52:08][DEBUG][file:csocket.cpp doRead():122][read message is: 123 ]
+[2019/10/30-22:52:08][DEBUG][file:csocket.cpp doRead():122][read message is: ab ]
+[2019/10/30-22:52:08][DEBUG][file:csocket.cpp doRead():122][read message is: 123 ]
+[2019/10/30-22:52:29][DEBUG][file:csocket.cpp handleAccept():92][accept a new client: 0.0.0.0 : 0
+]
+[2019/10/30-22:52:31][DEBUG][file:csocket.cpp doRead():122][read message is: asd
+ ]
+[2019/10/30-22:52:37][DEBUG][file:csocket.cpp doRead():122][read message is: qqq
+ ]
+[2019/10/30-22:53:03][DEBUG][file:csocket.cpp handleAccept():92][accept a new client: 0.0.0.0 : 0
+]
+[2019/10/30-22:53:03][DEBUG][file:csocket.cpp doRead():122][read message is: GET / HTTP/1.1
+Host: 101.132.65.184:8888
+User-Agent: HTTP Banner Detection (https://security.ipip.net)
+Conn]
+[2019/10/30-22:53:03][DEBUG][file:csocket.cpp doRead():118][client close.]
+[2019/10/30-22:59:29][DEBUG][file:csocket.cpp doRead():122][read message is: hello
+ ]

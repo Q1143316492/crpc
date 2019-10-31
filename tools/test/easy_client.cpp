@@ -45,6 +45,7 @@ int main(int argc, char *argv[])
         send(sockfd, oob_data, strlen(oob_data), MSG_OOB);
         send(sockfd, normal_data, strlen(normal_data), 0);
     }
+    // Connection reset by peer
     close(sockfd);
     return 0;
 }

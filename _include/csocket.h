@@ -28,11 +28,11 @@ private:
     
 };
 
-void doEpoll(vector<int> &fds);
+void doEpoll(vector<int> fds);
 
-void handle_accept(int epollfd, int listenfd);
+void handleAccept(int epollfd, int listenfd);
 
-void handle_events(int epollfd, struct epoll_event *events, int num, int listenfd, char* buf);
+void handleEvents(int epollfd, struct epoll_event *events, int num, int listenfd, char* buf);
 
 void doRead(int epollfd, int fd, char* buf);
 

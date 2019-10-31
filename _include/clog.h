@@ -20,9 +20,6 @@ using std::stringstream;
 
 typedef stringstream LogFormatterStr;
 
-/**
-    非线程安全的日志，第一版打算写成redis那种事件循环。就先不处理了
-*/
 class CLog {
 public:
     void printLog(const char*file, const char* func, int line, const char* level, const char* fmt, ...);

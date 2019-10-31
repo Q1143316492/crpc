@@ -75,16 +75,16 @@ int main(int argc, char *const *argv)
         INFO_LOG("Success init log and config");
 
         // 以守护进程的方式运行
-        DEBUG_LOG("before init_deamon() pid = %d ppid = %d", getpid(), getppid());
-        int ret_deamon = init_deamon();
-        if (ret_deamon == 1) {
-            INFO_LOG("father process exit");
-            break;
-        } else if(ret_deamon == -1) {
-            ERR_LOG("init_deamon() fail exit()");
-            break;
-        }
-        DEBUG_LOG("after init_deamon() pid = %d ppid = %d", getpid(), getppid());
+        // DEBUG_LOG("before init_deamon() pid = %d ppid = %d", getpid(), getppid());
+        // int ret_deamon = init_deamon();
+        // if (ret_deamon == 1) {
+        //     INFO_LOG("father process exit");
+        //     break;
+        // } else if(ret_deamon == -1) {
+        //     ERR_LOG("init_deamon() fail exit()");
+        //     break;
+        // }
+        // DEBUG_LOG("after init_deamon() pid = %d ppid = %d", getpid(), getppid());
         
         // 初始化服务
         g_cserver = new CServer();
